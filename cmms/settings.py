@@ -25,11 +25,21 @@ SECRET_KEY = 'django-insecure-tpzqxw&&@03wq2yzgf!gzh6u2=044s2j+_!#jioe(#f^6%quzo
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False  # keep false on server, true locally if needed
  
- 
-ALLOWED_HOSTS = ["earthingstudies.ieng.tech", ".ieng.tech","*"]
+if DEBUG:
+    SECURE_SSL_REDIRECT = False
+    CSRF_COOKIE_SECURE = False
+    SESSION_COOKIE_SECURE = False
+else:
+    SECURE_SSL_REDIRECT = True
+    CSRF_COOKIE_SECURE = True
+    SESSION_COOKIE_SECURE = True
+
+ALLOWED_HOSTS = ["earthingstudies.ieng.tech", ".ieng.tech"]
  
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
- 
+
+CSRF_TRUSTED_ORIGINS = ["https://*.ieng.tech"]
+
  
 # Application definition
  
